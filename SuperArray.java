@@ -1,4 +1,4 @@
-/*****************************
+/***************************** 
  * SKELETON for
  * class SuperArray --  A wrapper class for an array.
  * Maintains functionality:
@@ -20,7 +20,7 @@
    2015-12-06
 */
 
-public class SuperArray implements ListInt {
+public class SuperArray implements Comparable {
 
     //~~~~~INSTANCE VARS~~~~~
     //underlying container, or "core" of this data structure:

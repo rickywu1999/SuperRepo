@@ -1,6 +1,6 @@
 // Team Static -- James Wang, Ricky Wu
 // APCS1 pd9
-// HW41 -- In America, the Driver Sits on the Left
+// HW41 -- In America, the Driver Sits on the Left 
 // 2015-12-03
 
 public class Rational implements Comparable {

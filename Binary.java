@@ -183,7 +183,7 @@ public class Binary {
 	Binary b1 = new Binary(5);
 	Binary b2 = new Binary(5);
 	Binary b3 = b1;
-	Binary b4 = new Binary(64);
+	Binary b4 = new Binary(64); 
 
 	System.out.println( b1 );
 	System.out.println( b1._decNum);
