@@ -1,3 +1,3 @@
 public interface Comparable{
-    public int compareTo(Rational b);
+    public int compareTo(Comparable b);
 }
