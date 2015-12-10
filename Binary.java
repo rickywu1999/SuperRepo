@@ -156,8 +156,9 @@ public class Binary implements Comparable{
       negative integer if this<input, positive integer otherwise
       =============================================*/
     public int compareTo( Object other ) {
-        if (other instanceof Comparable) {
-	    return this.rationalize().compareTo(((Rational)other).rationalize());
+	if (other instanceof Comparable) {
+	    Rational _other = ((Comparable)other).rationalize();
+	    return this.rationalize().compareTo(_other);
 	}
         throw new ClassCastException("\nMy first error message! compareTo() input not valid");
     }

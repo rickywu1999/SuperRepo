@@ -112,7 +112,7 @@ public class Rational implements Comparable {
     public int compareTo( Object other ) {
         if (other instanceof Comparable) {
 	    Rational a = this.rationalize();
-	    Rational b = ((Rational)other).rationalize();
+	    Rational b = ((Comparable)other).rationalize();
 	    a.reduce();
 	    b.reduce();
 	    if (a.equals(b)) {

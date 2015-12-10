@@ -175,7 +175,8 @@ public class Hexadecimal implements Comparable{
       =============================================*/
     public int compareTo( Object other ) {
         if (other instanceof Comparable) {
-	    return this.rationalize().compareTo(((Rational)other).rationalize());
+	    Rational _other = ((Comparable)other).rationalize();
+	    return this.rationalize().compareTo(_other);
 	}
         throw new ClassCastException("\nMy first error message! compareTo() input not valid");
     }

@@ -24,7 +24,7 @@ public class SuperArray {
 
     //~~~~~INSTANCE VARS~~~~~
     //underlying container, or "core" of this data structure:
-    private int[] _data;
+    private Comparable[] _data;
 
     //position of last meaningful value
     private int _lastPos;
@@ -36,7 +36,7 @@ public class SuperArray {
     //~~~~~METHODS~~~~~
     //default constructor initializes 10-item array
     public SuperArray() {
-        _data = new int[10];
+        _data = new Comparable[10];
         _lastPos = -1; //flag to indicate no lastpos yet
         _size = 0;
     }
@@ -59,21 +59,16 @@ public class SuperArray {
 
     //double capacity of this SuperArray
     private void expand() {
-        int[] temp = new int[ _data.length * 2 ];
+        Comparable[] temp = new Comparable[ _data.length * 2 ];
         for(int i = 0; i < _data.length; i++)
             temp[i] = _data[i];
         _data = temp;
     }
 
-
-    //accessor -- return value at specified index
-    public int get(int index) { return _data[index]; }
-
-
     //mutator -- set value at index to newVal,
     //           return old value at index
-    public int set(int index, int newVal) {
-        int temp = _data[index];
+    public Comparable set(int index, Comparable newVal) {
+        Comparable temp = _data[index];
         _data[index] = newVal;
         return temp;
     }
@@ -81,9 +76,9 @@ public class SuperArray {
 
     // ~~~~~~~~~~~~~~ PHASE II ~~~~~~~~~~~~~~
     //adds an item after the last item
-    public void add(int newVal) {
+    public void add(Comparable newVal) {
         //creates temporary integer array with length of 1 greater than _size
-        int[] temp = new int[_size+1];
+        Comparable[] temp = new Comparable[_size+1];
         //populates temp with elements in _data
         for (int i = 0; i < _size; i++) {
             temp[i] = _data[i];
@@ -100,9 +95,9 @@ public class SuperArray {
 
     //inserts an item at index
     //shifts existing elements to the right
-    public void add(int index, int newVal) {
+    public void add(int index, Comparable newVal) {
         //creates temporary integer array with length of 1 greater than _size
-        int[] temp = new int[_size+1];
+        Comparable[] temp = new Comparable[_size+1];
         //populates temp with elements in _data up to the given index
         for (int i = 0; i < index; i++){
             temp[i] = _data[i];
@@ -126,7 +121,7 @@ public class SuperArray {
     //shifts elements left to fill in newly-empted slot
     public void remove(int index) {
         //creates temporary integer array with length of 1 less than _size
-        int[] temp = new int[_size-1];
+        Comparable[] temp = new Comparable[_size-1];
         //populates temp with elements in _data up to the given index
         for (int i = 0; i < index; i++) {
             temp[i] = _data[i];
@@ -149,10 +144,40 @@ public class SuperArray {
         return _size;
     }
 
+    public int linSearch(Comparable a) {
+	for (int i = 0; i < _lastPos ; i++){
+	    if (_data[i].compareTo(a) == 0){
+		return i;
+	    }
+	}
+	return -1;
+    }	
+
+    public boolean isSorted() {
+	for (int i = 1; i < _lastPos ; i++){
+	    if (_data[i].compareTo(_data[i-1]) < 0){
+		return false;
+	    }
+	}
+	return true;
+    }
 
     //main method for testing
     public static void main(String[] args) {
-     
+	SuperArray arr = new SuperArray();
+	Comparable a = new Binary("101010");
+	arr.add(a);
+	Comparable b = new Hexadecimal("3F");
+	arr.add(b);
+        Comparable c = new Rational(201,2);
+	arr.add(c);
+	
+	System.out.println("Array: " + arr);
+	System.out.println("Is the array in order? " + arr.isSorted());
+	arr.add(1,new Rational(1000000,2));
+	System.out.println("After Adding to Array: " + arr);
+	System.out.println("Is the array in order? " + arr.isSorted());
+	
     }//end main
 
 }//end class
