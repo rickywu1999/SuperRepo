@@ -20,7 +20,7 @@
    2015-12-06
 */
 
-public class SuperArray implements Comparable {
+public class SuperArray {
 
     //~~~~~INSTANCE VARS~~~~~
     //underlying container, or "core" of this data structure:
@@ -152,16 +152,7 @@ public class SuperArray implements Comparable {
 
     //main method for testing
     public static void main(String[] args) {
-        ListInt curtis = new SuperArray();
-        curtis.add(5);
-        System.out.println(curtis);
-        System.out.println("Current size of SuperArray: " + curtis.size());
-        curtis.add(1, 20);
-        System.out.println(curtis);
-        System.out.println(curtis.get(1));
-        System.out.println("Current size of SuperArray: " + curtis.size());
-        curtis.remove(1);
-        System.out.println(curtis);
+     
     }//end main
 
 }//end class

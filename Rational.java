@@ -29,6 +29,7 @@ public class Rational implements Comparable {
         }
     }
 
+    
     // overriding toString()
     public String toString() {
         return numerator + "/" + denominator;
@@ -100,20 +101,29 @@ public class Rational implements Comparable {
         return gcd(denominator, numerator % denominator);
     }
 
+    public Rational rationalize(){
+	return new Rational(numerator,denominator);
+    }
+
     // Compares one Rational to another
     // Returns 0 if they are equal
     // Returns 1 if calling number is greater than parameter
     // Returns -1 if calling number is less than parameter
-    public int compareTo(Rational r) {
-        double calling = floatValue();
-        double parameter = r.floatValue();
-
-        if ( calling == parameter ) {
-            return 0;
-        } else if ( calling > parameter ) {
-            return 1;
-        }
-        return -1;
+    public int compareTo( Object other ) {
+        if (other instanceof Comparable) {
+	    Rational a = this.rationalize();
+	    Rational b = ((Rational)other).rationalize();
+	    a.reduce();
+	    b.reduce();
+	    if (a.equals(b)) {
+		return 0;
+	    }
+	    else if (a.floatValue() > b.floatValue()) {
+		return 1;
+	    }
+	    return -1;
+	}
+        throw new ClassCastException("\nMy first error message! compareTo() input not valid");
     }
 
     public boolean equals(Rational r) {

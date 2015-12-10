@@ -151,6 +151,10 @@ public class Hexadecimal implements Comparable{
 
     }
 
+    public Rational rationalize(){
+	return new Rational(_decNum,1);
+    }
+
 
     /*=============================================
       boolean equals(Object) -- tells whether 2 Objs are equivalent
@@ -170,16 +174,10 @@ public class Hexadecimal implements Comparable{
       negative integer if this<input, positive integer otherwise
       =============================================*/
     public int compareTo( Object other ) {
-        if (other instanceof Hexadecimal) {
-	    if (this._decNum == ((Hexadecimal)other)._decNum) {
-		return 0;
-	    }
-	    else if (this._decNum > ((Hexadecimal)other)._decNum) {
-		return 1;
-	    }
-	    return -1;
+        if (other instanceof Comparable) {
+	    return this.rationalize().compareTo(((Rational)other).rationalize());
 	}
-        throw new ClassCastException("\nMy first error message! compareTo() input not a hexadecimal");
+        throw new ClassCastException("\nMy first error message! compareTo() input not valid");
     }
 
 

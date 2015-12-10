@@ -133,6 +133,10 @@ public class Binary implements Comparable{
 	return Integer.parseInt(s.substring(len, len-1)) * (int)Math.pow(2,len-1) + binToDecR(s.substring(len-1));
     }
 
+    public Rational rationalize(){
+	return new Rational(_decNum,1);
+    }
+
 
     /*=============================================
       boolean equals(Object) -- tells whether 2 Objs are equivalent
@@ -141,19 +145,7 @@ public class Binary implements Comparable{
       Object), or if this and other represent equal binary values
       =============================================*/
     public boolean equals( Object other ) { 
- 
-	//First, check for aliasing.
-	boolean retVal = this == other;
- 
-	//Next, if this and input Object are different objects,
-        if ( !retVal ) {
- 
-	    //...check to see if input Object is a Binary
-	    if (other instanceof Binary) {
-	        retVal = _decNum == ((Binary)other)._decNum;
-	    }				     
-	}
-	return retVal;    
+        return this == other || compareTo(other) == 0;
     }
 
 
@@ -164,13 +156,10 @@ public class Binary implements Comparable{
       negative integer if this<input, positive integer otherwise
       =============================================*/
     public int compareTo( Object other ) {
-	if (_decNum > ((Binary)other)._decNum){
-	    return 1;
+        if (other instanceof Comparable) {
+	    return this.rationalize().compareTo(((Rational)other).rationalize());
 	}
-	if (_decNum < ((Binary)other)._decNum){
-	    return -1;
-	}
-	return 0;
+        throw new ClassCastException("\nMy first error message! compareTo() input not valid");
     }
 
 
